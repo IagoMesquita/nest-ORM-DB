@@ -16,8 +16,8 @@ export class CoursesService {
     return this.courseRepository.find();
   }
 
-  findOne(id: string) {
-    const course = this.courseRepository.findOne(id);
+  async findOne(id: string) {
+    const course = await this.courseRepository.findOne(id);
 
     if (!course) {
       throw new NotFoundException(`Course ID ${id} not found`);
@@ -32,7 +32,7 @@ export class CoursesService {
     return this.courseRepository.save(course);
   }
 
-  async pdate(id: string, updateCourseDto: UpdateCourseDto) {
+  async update(id: string, updateCourseDto: UpdateCourseDto) {
     const course = await this.courseRepository.preload({
       id: +id,
       ...updateCourseDto,
@@ -42,7 +42,7 @@ export class CoursesService {
       throw new NotFoundException(`Course ID ${id} not found`);
     }
 
-    return course;
+    return this.courseRepository.save(course);
   }
 
   async remove(id: string) {
