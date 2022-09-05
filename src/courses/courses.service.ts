@@ -4,12 +4,16 @@ import { Repository } from 'typeorm';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { Course } from './entities/course.entity';
+import { Tag } from './entities/tag.entity';
 
 @Injectable()
 export class CoursesService {
   constructor(
     @InjectRepository(Course)
     private readonly courseRepository: Repository<Course>,
+
+    @InjectRepository(Tag)
+    private readonly tagRepository: Repository<Tag>,
   ) {}
 
   findAll() {
@@ -53,6 +57,16 @@ export class CoursesService {
     }
 
     return this.courseRepository.remove(course);
+  }
+
+  private async preloadTagByName(name: string): Promise<Tag> {
+    const tag = await this.tagRepository.findOne({ name });
+
+    if (tag) {
+      return tag;
+    }
+
+    return this.tagRepository.create({ name });
   }
 }
 
