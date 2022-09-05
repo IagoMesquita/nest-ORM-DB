@@ -17,11 +17,15 @@ export class CoursesService {
   ) {}
 
   findAll() {
-    return this.courseRepository.find();
+    return this.courseRepository.find({
+      relations: ['tags'],
+    });
   }
 
   async findOne(id: string) {
-    const course = await this.courseRepository.findOne(id);
+    const course = await this.courseRepository.findOne(id, {
+      relations: ['tags'],
+    });
 
     if (!course) {
       throw new NotFoundException(`Course ID ${id} not found`);
@@ -90,4 +94,9 @@ export class CoursesService {
   A mensagem a ser exibida e o status, que pode ser direto o numero ou
   ou os metodos que vem no Nest
      throw new HttpException(`Course ID ${id} not found`, HttpStatus.NOT_FOUND );
+*/
+
+/*
+  para retornar os informações das tabelas relacionasda, deve ser passada a 
+  proriedade 'relations' valor  um array passando o nome que foi criando no relacionamente em entity.
 */
