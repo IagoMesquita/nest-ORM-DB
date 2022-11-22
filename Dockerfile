@@ -1,6 +1,6 @@
 FROM node:14.15.4-alpine3.12
 
-RUN add --no-cache bash 
+RUN apk add --no-cache bash 
 # instalar o bash
 
 RUN npm install -g @nestjs/cli
