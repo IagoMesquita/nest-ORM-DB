@@ -2,7 +2,7 @@
 
 npm install
 npm run build
-npx typeorm migrations:run
+npx typeorm migration:run
 npm run start:dev
 
 # quando subimos um conaiter como o nosso, com uma imagem alpine
