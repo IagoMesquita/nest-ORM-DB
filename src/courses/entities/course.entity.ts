@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -29,6 +30,14 @@ export class Course {
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
+
+  @BeforeInsert()
+  eneratedId() {
+    if (this.id) {
+      return;
+    }
+    this.id = uuidv4();
+  }
 }
 
 /* 

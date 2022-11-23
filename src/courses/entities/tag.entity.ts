@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
@@ -22,4 +23,12 @@ export class Tag {
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
+
+  @BeforeInsert()
+  generatedId() {
+    if (this.id) {
+      return;
+    }
+    this.id = uuidv4();
+  }
 }
