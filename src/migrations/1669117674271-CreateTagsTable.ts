@@ -18,7 +18,7 @@ export class CreateTagsTable1669117674271 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp',
-            default: 'CURRENT_TIMEST',
+            default: 'CURRENT_TIMESTAMP',
           },
         ],
       }),
