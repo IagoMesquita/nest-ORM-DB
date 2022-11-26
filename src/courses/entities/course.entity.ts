@@ -32,7 +32,7 @@ export class Course {
   created_at: Date;
 
   @BeforeInsert()
-  eneratedId() {
+  generatedId() {
     if (this.id) {
       return;
     }
