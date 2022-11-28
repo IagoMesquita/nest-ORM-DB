@@ -22,10 +22,10 @@ export class Course {
   @Column()
   description: string;
 
+  @JoinTable({ name: 'courses_tags' })
   @ManyToMany(() => Tag, (tag) => tag.courses, {
     cascade: true,
   })
-  @JoinTable()
   tags: Tag[];
 
   @CreateDateColumn({ type: 'timestamp' })
