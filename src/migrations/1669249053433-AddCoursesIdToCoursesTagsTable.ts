@@ -24,7 +24,7 @@ export class AddCoursesIdToCoursesTagsTable1669249053433
         name: 'courses_tags_courses',
         columnNames: ['coursesId'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'cousers',
+        referencedTableName: 'courses',
       }),
     );
   }
